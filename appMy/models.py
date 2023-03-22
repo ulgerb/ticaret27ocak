@@ -97,6 +97,7 @@ class SizeNumber(models.Model):
 
 class SizeLetter(models.Model):
     # KIYAFET BEDEN
+    user = models.ForeignKey(User, verbose_name=("Kullanıcı"), on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, verbose_name=("Ürün"), on_delete=models.CASCADE)
     color = models.ForeignKey(Color, verbose_name=("Renk"), on_delete=models.CASCADE)
     gander = models.ForeignKey(Gander, verbose_name=("Cinsiyet"), on_delete=models.CASCADE, null=True)
@@ -129,5 +130,10 @@ class Shopbasket(models.Model):
     
     
     
-    
+class Comment(models.Model):
+    user = models.ForeignKey(User, verbose_name=("Kullanıcı"), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, verbose_name=("Ürün"), on_delete=models.CASCADE)
+    text = models.TextField(("Yorum"), max_length=1000)
+    date_now = models.DateTimeField(("Tarih - Saat"), auto_now_add=True)
+    star = models.IntegerField(("Yorum Puanı"), default=5)
 

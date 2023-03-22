@@ -53,3 +53,6 @@ class ShopbasketAdmin(admin.ModelAdmin):
                     'price_all', 'count', 'id')
 
     
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('user','product','star', 'date_now', 'id')

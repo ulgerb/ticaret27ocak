@@ -27,6 +27,7 @@ urlpatterns = [
     path('Contact/',Contact, name="Contact"),
     path('Shop/',Shop, name="Shop"),
     path('ShopDetail/<slug>/',ShopDetail, name="ShopDetail"),
+    path('ShopBasketDelete/<sid>/', ShopBasketDelete, name="ShopBasketDelete"),
     # USER
     path('ShopBasket/', ShopBasket, name='ShopBasket'),
     path('login/', loginUser, name="loginUser"),
