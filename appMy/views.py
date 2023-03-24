@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
+from django.db.models import Q
 
 
 def basketCount(request):
@@ -30,9 +31,18 @@ def Contact(request):
 
 def Shop(request):
     products = ProductStok.objects.all()
-    for i in products:
-        for j in i.sizeletter.all():
-            print(j)
+    
+    query = request.GET.get("query")
+    if query:
+        products = products.filter(
+            Q(product__title__icontains = query) |
+            Q(product__brand__icontains = query) |
+            Q(product__text__icontains=query) |
+            Q(product__slug__icontains=query)
+        )
+        
+    print(request.GET)
+    
     context = {
         "shopbasket": basketCount(request),
         "products":products,
